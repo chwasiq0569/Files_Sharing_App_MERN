@@ -14,3 +14,16 @@ module.exports.fileUpload = async (req, res) => {
     const response = await file.save();
     return res.send({ file: `${process.env.APP_BASE_URL}/files/${response.uuid}` });
 }
+
+module.exports.show = (req, res) => {
+    File.findOne({ uuid: req.params.uuid }).then(file => {
+        if(file){
+            return res.send({ file: file })
+        }
+        else{
+            return res.status(404).send({ err: "File not Found" })
+        }
+    }).catch((err) => {
+        return res.status(404).send({ err: "File not Found" })
+    })
+}

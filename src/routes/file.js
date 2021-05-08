@@ -1,5 +1,5 @@
 const express = require('express');
-const { fileUpload } = require('../controller/file');
+const { fileUpload, show } = require('../controller/file');
 const router = express.Router();
 const multer = require('multer');
 const path = require('path');
@@ -21,5 +21,6 @@ let upload = multer({
 // .single('myfile')
 
 router.post('/file', upload.single('myfile'), fileUpload)
+router.get('/files/:uuid', show)
 
 module.exports = router
