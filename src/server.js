@@ -3,6 +3,13 @@ require('dotenv').config();
 const app = express();
 const connectDB = require('../config/db');
 const fileRouter = require('./routes/file');
+const cors = require('cors')
+
+const corsOptions = {
+    origin: process.env.ALLOWED_CLIENTS.split(',')
+}
+
+app.use(cors(corsOptions))
 
 connectDB()
 
