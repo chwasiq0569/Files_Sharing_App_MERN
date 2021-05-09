@@ -6,6 +6,7 @@ const fileRouter = require('./routes/file');
 
 connectDB()
 
+app.use(express.json())
 app.use('/api', fileRouter)
 
 const PORT = process.env.PORT || 3000;
